@@ -95,3 +95,40 @@ def randaugment_train(
             ),
         ]
     )
+
+import torch
+import os
+import sys
+import yaml
+from torchvision import transforms
+from torchvision.datasets import CIFAR10
+from torch.utils.data import DataLoader, random_split
+from typing import Tuple
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+import numpy as np
+
+if "./" not in sys.path:
+    sys.path.append("./")
+
+def custom_augment_train(
+    dataset: str = "TACO", img_size: float = 32, aug_fcns: Tuple = ()
+) -> transforms.Compose:
+    """Simple data augmentation rule for training CIFAR100."""
+    augmentation_functions = (
+    transforms.ColorJitter(brightness=(0.5, 1.5), contrast=(0.5, 1.5), saturation=(0.5, 1.5)), 
+    transforms.RandomPerspective(),
+    transforms.RandomHorizontalFlip(),
+    )
+
+    transform_fcns = []
+    transform_fcns.append(transforms.Resize((img_size, img_size)))
+    transform_fcns += list(aug_fcns)
+    
+    transform_fcns.append(transforms.ToTensor())
+    transform_fcns.append(transforms.Normalize(
+                DATASET_NORMALIZE_INFO[dataset]["MEAN"],
+                DATASET_NORMALIZE_INFO[dataset]["STD"],
+            ))
+    
+    return transforms.Compose(transform_fcns)

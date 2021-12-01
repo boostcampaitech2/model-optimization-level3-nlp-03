@@ -1,151 +1,61 @@
 backbone:
 - - 1
-  - Conv
+  - DWConv
   - - 16
     - 3
+    - 1
+    - null
+    - ReLU
+- - 4
+  - InvertedResidualv3
+  - - 5
+    - 4.4
+    - 32
+    - 0
+    - 0
+    - 2
+- - 3
+  - InvertedResidualv3
+  - - 5
+    - 2.9
+    - 80
+    - 1
+    - 0
+    - 2
+- - 2
+  - DWConv
+  - - 160
+    - 1
     - 2
     - null
-    - 1
-    - HardSwish
-- - 1
-  - InvertedResidualv3
-  - - 3
-    - 1
-    - 16
-    - 0
-    - 0
-    - 1
-- - 1
-  - InvertedResidualv3
-  - - 3
-    - 4
-    - 24
-    - 0
-    - 0
-    - 2
-- - 1
-  - InvertedResidualv3
-  - - 3
-    - 3
-    - 24
-    - 0
-    - 0
-    - 1
-- - 1
-  - InvertedResidualv3
-  - - 5
-    - 3
-    - 40
-    - 1
-    - 0
-    - 2
-- - 1
-  - InvertedResidualv3
-  - - 5
-    - 3
-    - 40
-    - 1
-    - 0
-    - 1
-- - 1
-  - InvertedResidualv3
-  - - 5
-    - 3
-    - 40
-    - 1
-    - 0
-    - 1
-- - 1
-  - InvertedResidualv3
-  - - 3
-    - 6
-    - 80
-    - 0
-    - 1
-    - 2
-- - 1
-  - InvertedResidualv3
-  - - 3
-    - 2.5
-    - 80
-    - 0
-    - 1
-    - 1
-- - 1
-  - InvertedResidualv3
-  - - 3
-    - 2.3
-    - 80
-    - 0
-    - 1
-    - 1
-- - 1
-  - InvertedResidualv3
-  - - 3
-    - 2.3
-    - 80
-    - 0
-    - 1
-    - 1
-- - 1
-  - InvertedResidualv3
-  - - 3
-    - 6
-    - 112
-    - 1
-    - 1
-    - 1
-- - 1
-  - InvertedResidualv3
-  - - 3
-    - 6
-    - 112
-    - 1
-    - 1
-    - 1
-- - 1
-  - InvertedResidualv3
-  - - 5
-    - 6
-    - 160
-    - 1
-    - 1
-    - 2
-- - 1
-  - InvertedResidualv3
-  - - 5
-    - 6
-    - 160
-    - 1
-    - 1
-    - 1
-- - 1
-  - InvertedResidualv3
-  - - 5
-    - 6
-    - 160
-    - 1
-    - 1
-    - 1
+    - ReLU
 - - 1
   - Conv
-  - - 960
+  - - 256
+    - 1
+    - 1
+    - null
+    - 1
+    - Hardswish
+- - 1
+  - Conv
+  - - 768
     - 1
     - 1
 - - 1
   - GlobalAvgPool
   - []
 - - 1
-  - Conv
-  - - 1280
-    - 1
-    - 1
-- - 1
-  - Flatten
-  - []
-- - 1
-  - Linear
+  - FixedConv
   - - 6
-depth_multiple: 1.0
+    - 1
+    - 1
+    - null
+    - 1
+    - null
+depth_multiple: 0.5
 input_channel: 3
+input_size:
+- 168
+- 168
 width_multiple: 1.0
