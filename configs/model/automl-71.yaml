@@ -1,3 +1,4 @@
+# Model Summary: 75 layers, 376,532 parameters, 376,532 gradients
 input_channel: 3
 
 depth_multiple: 1.0
