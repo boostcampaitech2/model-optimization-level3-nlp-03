@@ -1,0 +1,18 @@
+input_channel: 3
+
+depth_multiple: 1.0
+width_multiple: 1.0
+
+backbone:
+    # Example model in PyTorch Tutorial (https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html)
+    # [repeat, module, args]
+    [
+      [1,"DWConv",[64,3,2,null,"ReLU"]],
+      [1,"InvertedResidualv3",[5,1.9,40,1,1,1]],
+      [2,"DWConv",[128,5,2,null,"ReLU"]],
+      [2,"InvertedResidualv3",[5,1.2,80,0,1,1]],
+      [1,"InvertedResidualv2",[128,1,2]],
+      [1,"Conv",[1024,1,1,null,1,"Hardswish"]],
+      [1,"Conv",[128,1,1]],[1,"GlobalAvgPool",[]],
+      [1,"FixedConv",[6,1,1,null,1,null]]
+    ]
